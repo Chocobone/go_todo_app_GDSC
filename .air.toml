@@ -2,7 +2,7 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-cmd = "go build -o ./tmp/main ."
+cmd = "go build -o ./tmp/main -buildvcs=false ."
 # 'cmd'에서 binary file 지정
 bin = "tmp/main"
 

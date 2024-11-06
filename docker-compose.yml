@@ -4,7 +4,7 @@ services:
     image: gotodo
     build:
       args:
-        - target=dev
+      - target=dev
     volumes:
       - .:/app
     ports:
