@@ -16,7 +16,7 @@ RUN go build -trimpath -ldflags "-w -s" -o app
 #Deploy stage
 FROM debian:bullseye-slim AS deploy
 
-RUN apt-get update
+RUN apt-get update 
 
 #빌드된 바이너리를 복사
 COPY --from=deploy-builder /app/app .

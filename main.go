@@ -7,6 +7,9 @@ import (
 	"net"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
+	"time"
 
 	"github.com/Chocobone/go_todo_app_GDSC/config"
 	"golang.org/x/sync/errgroup"
@@ -40,6 +43,11 @@ func main() {
 }
 
 func run(ctx context.Context) error {
+	//page 62
+	ctx, stop := signal.NotifyContext(ctx, os.Interrupt, syscall.SIGTERM)
+	defer stop()
+
+	// page 59
 	cfg, err := config.New()
 	if err != nil {
 		return err
@@ -53,6 +61,7 @@ func run(ctx context.Context) error {
 
 	s := &http.Server{
 		Handler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			time.Sleep(5 * time.Second)
 			fmt.Fprintf(w, "Hello, %s!", r.URL.Path[1:])
 		}),
 	}

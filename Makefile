@@ -3,10 +3,10 @@
 
 DOCKER_TAG := latest
 build: 
-	docker built -t Chocobone/go_todo_app_GDSC:${DOCKER_TAG} --target deploy ./
+	docker build -t chocobone/go_todo_app_gdsc:${DOCKER_TAG} --target deploy ./
 
 build-local:
-	docekr compose build --no-cache
+	docker compose build --no-cache
 
 up:
 	docker compose up -d 
