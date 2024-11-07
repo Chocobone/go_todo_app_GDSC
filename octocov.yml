@@ -1,6 +1,6 @@
 coverage:
   paths:
-    - ./coverage.out
+    - coverage.out
 codeToTestRatio:
   code:
     - '**/*.go'
