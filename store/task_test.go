@@ -38,7 +38,7 @@ func prepareTasks(ctx context.Context, t *testing.T, con Execer) entity.Tasks {
 	t.Helper()
 	// 깨끗한 상태로 정리해둔다
 	if _, err := con.ExecContext(ctx, "DELETE FROM task;"); err != nil {
-		t.Logf("failed to initalize task: %v", err)
+		t.Logf("failed to initialize task: %v", err)
 	}
 	c := clock.FixedClocker{}
 	wants := entity.Tasks{
