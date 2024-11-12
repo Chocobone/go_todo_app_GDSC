@@ -19,6 +19,8 @@ CREATE TABLE `task`
     `modified`  DATETIME(6) NOT NULL COMMENT '레코드 수정 시간',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='태스크';
+GRANT ALL PRIVILEGES ON *.* TO 'todo'@'172.18.0.1' IDENTIFIED BY 'todo';
+FLUSH PRIVILEGES;
 
 
 
