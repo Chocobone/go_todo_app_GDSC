@@ -23,9 +23,12 @@ services:
     container_name: todo-db
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: todo
       MYSQL_USER: todo
       MYSQL_PASSWORD: todo
       MYSQL_DATABASE: todo
+      MYSQL_ROOT_HOST: "%" #추가
+      MYSQL_USER_HOST: "%" #추가
     volumes:
       - todo-db-data:/var/lib/mysql
       - $PWD/_tools/mysql/conf.d:/etc/mysql/conf.d:cached
