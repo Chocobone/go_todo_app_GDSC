@@ -7,6 +7,7 @@ import (
 	"github.com/Chocobone/go_todo_app_GDSC/clock"
 	"github.com/Chocobone/go_todo_app_GDSC/config"
 	"github.com/Chocobone/go_todo_app_GDSC/handler"
+	"github.com/Chocobone/go_todo_app_GDSC/service"
 	"github.com/Chocobone/go_todo_app_GDSC/store"
 
 	"github.com/go-chi/chi/v5"
@@ -25,9 +26,19 @@ func NewMux(ctx context.Context, cfg *config.Config) (http.Handler, func(), erro
 		return nil, cleanup, err
 	}
 	r := store.Repository{Clocker: clock.RealClocker{}}
-	at := &handler.AddTask{DB: db, Repo: &r, Validator: v}
+	at := &handler.AddTask{
+		Service:   &service.AddTask{DB: db, Repo: &r},
+		Validator: v,
+	}
 	mux.Post("/tasks", at.ServeHTTP)
-	lt := &handler.ListTask{DB: db, Repo: &r}
+	lt := &handler.ListTask{
+		Service: &service.ListTask{DB: db, Repo: &r},
+	}
 	mux.Get("/tasks", lt.ServeHTTP)
+	ru := &handler.RegisterUser{
+		Service:   &service.RegisterUser{DB: db, Repo: &r},
+		Validator: v,
+	}
+	mux.Post("/register", ru.ServeHTTP)
 	return mux, cleanup, nil
 }
