@@ -1,7 +1,7 @@
 CREATE TABLE `user`
 (
     `id`        BIGINT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 식별자',
-    `name`      VARCHAR(20) NOT NULL COMMENT 'ユーザー名',
+    `name`      VARCHAR(20) NOT NULL COMMENT '사용자명',
     `password`  VARCHAR(80) NOT NULL COMMENT '패스워드 해시',
     `role`      VARCHAR(80) NOT NULL COMMENT '역할', 
     `created`   DATETIME(6) NOT NULL COMMENT '레코드 작성 시간',
